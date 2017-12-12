@@ -108,7 +108,18 @@ class User {
     }
 }
 
-
+function trieInsert(t) {
+    for (i = 1; i < t.length; i++) {
+        var x = t[i];
+        var j = i;
+        while (j > 0 && t[j - 1].nom > x.nom) {
+            t[j] = t[j - 1];
+            j = j - 1;
+        }
+        t[j] = x
+    }
+    return t
+}
 function trieABull(t) {
     var o, k;
     for (o = t.length - 1; o >= 1; o--) {
@@ -122,16 +133,76 @@ function trieABull(t) {
     }
     return t
 }
-
 function getV() {
     return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 6);
 }
+
+
 var users = [];
-for (i = 0; i < 101; i++) {
-    users.push( new User(getV(), getV(),parseInt(Math.random()*100)  ) )
+for (i = 0; i < 100; i++) {
+    users.push(new User(getV(), getV(), parseInt(Math.random() * 100)))
 }
 
 
+function getZAscii() {
+    var ZAscii = 65 + 26;
+    return ZAscii;
+}
+function getAlphaArray(decal) {
+    var ZAscii = 91;
+    var base = []
+    for (var i = 65; i < getZAscii(); i++) {
+        base.push(String.fromCharCode(i))
+    }
+    while (!decal == 0) {
+        base.push(base.shift())
+        decal--;
+    }
+    return base
+}
 
 
-console.log(trieABull(users))
+function getA(decalage) {
+    var base = []
+    for (var i = 65 + decalage; i < (65 + 26 ); i++) {
+        base.push(String.fromCharCode(i))
+    }
+    for (var i = 65; i < 65 + decalage; i++) {
+        base.push(String.fromCharCode(i))
+    }
+    return base
+}
+
+
+var t = [];
+for (i = 0; i < 12; i++) {
+    t[i] = [];
+    for (j = 0; j < 12; j++) {
+        t[i][j] = i + "/" + j
+    }
+}
+
+
+var arrayRes = []
+for (i = 0; i < 26; i++) {
+    arrayRes[i] = getA(i)
+}
+
+chaine = "j adore ecouter la radio toute la journee";
+cle = "M USIQU EMUSIQU EM USIQU EMUSI QU EMUSIQU";
+var res = "";
+for (i = 0; i < chaine.length; i++) {
+    var char = chaine.charAt(i).toUpperCase();
+    if (char === " ") {
+        res += char;
+    } else {
+        var charC = cle.charAt(i).toUpperCase();
+        var clere = arrayRes[0];
+        var col = arrayRes[0].indexOf(char);
+        var ligne = arrayRes[0].indexOf(charC);
+        res += arrayRes[col][ligne]
+    }
+
+}
+
+console.log(res)

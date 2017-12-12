@@ -127,6 +127,7 @@ function cinquNumberInvers(para) {
 }
 
 
+
 function AyoubToBinary(n) {
     var divmod = n % 2, divres = parseInt(n / 2), res = divmod + "";
     while (divres != 0) {
@@ -276,7 +277,9 @@ function trieInsert(t) {
     }
     return t
 }
+
 var t = [8, 1, 2, 5, 7, 3, 9, 70, 10, 50, 99, 750, 320, 1]
+console.log(trieABull(t))
 
 var user = {
     userName:"ayoub",
