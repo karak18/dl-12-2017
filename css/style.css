@@ -1,0 +1,22 @@
+.H7atim{
+    background-color: aqua;
+}
+#nom{
+    background-color: burlywood;
+}
+
+.divamoi{
+    background-color: lightblue;
+    border:5px solid black;
+    height: 200px
+}
+hr{
+    border-width: 10px;
+}
+div {
+    border:5px dashed lime;
+    background-color: yellow;
+    border-radius: 50%;
+    height: 100px;
+    width:100px
+}

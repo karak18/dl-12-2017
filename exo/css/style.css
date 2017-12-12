@@ -1,0 +1,14 @@
+div{
+    width:100px;
+    height: 100px;
+}
+
+.inCss {
+    background-color: #ffdc9e;
+    border-radius: 50%;
+}
+
+#inCss {
+    background-color: #ff7936;
+    border-radius: 50%;
+}

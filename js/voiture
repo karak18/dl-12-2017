@@ -1,0 +1,137 @@
+class Rat {
+
+    constructor(name, nbLivre, No) {
+        this.name = name || "";
+        this.nbLivre = nbLivre || 0;
+        this.cardCode = No;
+
+    }
+
+    emprunte(b, t) {
+        console.warn(this.name + " Emprunt " + t)
+        b.emprunt(t, this);
+    }
+
+    retourne(b, t) {
+        console.warn(this.name + " retourne " + t)
+        b.retourne(t, this);
+    }
+
+}
+class Biblio {
+    constructor(L) {
+        this.livres = L || []
+
+    }
+
+    emprunt(t, rat) {
+        var trouve = false;
+        for (var i = 0; i < this.livres.length; i++) {
+            var l = this.livres[i]
+            if (l.titre == t) {
+                trouve = true;
+                if (!l.dispo) console.error('Livre indisponible ' + t);
+                else {
+                    l.cardCodeEmprun = rat.cardCode;
+                    l.dispo = false;
+                }
+            }
+        }
+        if (!trouve) console.error('Livre introuveable ' + t)
+    }
+
+    retourne(t, rat) {
+        var trouve = false;
+        for (var i = 0; i < this.livres.length; i++) {
+            var l = this.livres[i]
+            if (l.titre == t) {
+                trouve = true;
+                if (l.dispo) console.error('Imposible de rtourné un livre non emprunté' + t);
+                else {
+                    l.cardCodeEmprun = "";
+                    l.dispo = true;
+                }
+            }
+        }
+        if (!trouve) console.error('Livre introuveable ' + t)
+    }
+
+    addLivre(livre) {
+        this.livres.push(livre)
+    }
+
+    removeLivre(livre) {
+        this.livres = this.livres.filter((l, i)=> {
+            return l.id != livre.id
+        })
+    }
+
+}
+class Livre {
+    constructor(T, id) {
+        if (!id || id === 0 || id === "") {
+            //TODO: verifier dans la bibliotheque l'existance
+            console.error('Id not correct')
+        }
+        this.titre = T
+        this.id = id;
+        this.dispo = true;
+        this.cardCodeEmprun = ""
+
+    }
+}
+
+
+//var r1 = new Rat("ayoub", 0, "mks00078934");
+//var r2 = new Rat("bakay", 0, "BBBB3213213");
+//var B = new Biblio([l1, l2, l3]);
+//var l1 = new Livre("ayoub ", 1)
+//B.addLivre(L1)
+//var l2 = new Livre("hassani", 2)
+//var l3 = new Livre("toto", 3)
+//
+//
+//
+////r2.emprunte(B,)
+//r1.emprunte(B, "hassani")
+//r2.emprunte(B, "hassani")
+//r1.retourne(B, "hassani")
+//r2.emprunte(B, "hassani")
+//console.log(l1, l2, l3, B)
+
+
+class User {
+    constructor(nom, pren, a) {
+        this.nom = nom;
+        this.prenom = pren;
+        this.age = a;
+    }
+}
+
+
+function trieABull(t) {
+    var o, k;
+    for (o = t.length - 1; o >= 1; o--) {
+        for (k = 0; k <= o - 1; k++) {
+            if (t[k + 1].nom < t[k].nom) {
+                var tmp = t[k + 1];
+                t[k + 1] = t[k]
+                t[k] = tmp
+            }
+        }
+    }
+    return t
+}
+
+function getV() {
+    return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 6);
+}
+var users = [];
+for (i = 0; i < 101; i++) {
+    users.push( new User(getV(), getV(),parseInt(Math.random()*100)  ) )
+}
+
+
+
+
+console.log(trieABull(users))
