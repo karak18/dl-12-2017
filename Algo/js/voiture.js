@@ -193,9 +193,9 @@ cle = "M USIQU EMUSIQU EM USIQU EMUSI QU EMUSIQU";
 var res = "";
 for (i = 0; i < chaine.length; i++) {
     var char = chaine.charAt(i).toUpperCase();
-    if (char === " ") {
+    if (char === " ")
         res += char;
-    } else {
+    else {
         var charC = cle.charAt(i).toUpperCase();
         var clere = arrayRes[0];
         var col = arrayRes[0].indexOf(char);
@@ -206,3 +206,106 @@ for (i = 0; i < chaine.length; i++) {
 }
 
 console.log(res)
+
+
+var mois = 7;
+var moisChaine = "toto";
+switch (mois) {
+    case 1:
+        moisChaine = "Janvier"
+        break;
+    case 2:
+        moisChaine = "Fevrier"
+        break;
+    case 3:
+        moisChaine = "Marse"
+        break;
+    case 5:
+        moisChaine = "May"
+        break;
+
+    default:
+        moisChaine = "Non traité"
+        break;
+}
+
+console.log(moisChaine)
+
+
+function triePaireImpaire(t){
+    var sorted = false;
+    while(!sorted){
+        sorted = true;
+        for (i = 1; i < t.length-1; i+=2) {
+            if(t[i]>t[i+1]){
+               var tmp  =  t[i];
+                t[i] = t[i+1]
+                t[i+1] = tmp;
+                sorted = false;
+            }
+        }
+        for (i = 0; i < t.length-1; i+=2) {
+            if(t[i]>t[i+1]){
+                var tmp  =  t[i];
+                t[i] = t[i+1]
+                t[i+1] = tmp;
+                sorted = false;
+            }
+        }
+    }
+    return t
+}
+
+function ecrire(paramaitrePasseParCeluiQuiUtiliseLaFonction) {
+    var div = document.createElement("div");
+    div.innerHTML = "<p>" + paramaitrePasseParCeluiQuiUtiliseLaFonction + "</p>"
+    document.getElementById("res").appendChild(div)
+}
+function addBtn() {
+    var b = document.createElement("button");
+    b.innerHTML = "recherche"
+    b.onclick = start
+    document.getElementById("res").appendChild(b)
+}
+
+addBtn()
+var tab = []
+
+for(var i=0;i<1000;i++){
+     var str = getV();
+    tab.push(str)
+    ecrire(str)
+}
+tab = triePaireImpaire(tab);
+
+
+
+
+function start(){
+    var zzz = prompt("veuillez saisir un nombre entier :")
+    trouve=false;
+
+    while(!trouve){
+        var mid =tab[  parseInt(tab.length/2)  ]
+        if(zzz < mid){
+            tab = tab.slice(0,parseInt(tab.length/2))
+        }else{
+            tab = tab.slice(parseInt(tab.length/2),tab.length)
+        }
+        if(tab.length<=5)trouve = true;
+    }
+    enRecherche = true;
+    console.log(zzz ,mid, zzz<mid,tab)
+    for(var i=0;(enRecherche && i<tab.length);i++){
+       if( tab[i] === zzz){
+           //trouvé
+           enRecherche = false;
+           console.log(zzz+ ' a ete trouvé a la position '+(i))
+           //i=10000;
+       }
+
+    }
+   if(enRecherche) console.log(zzz+ ' N \'as pas ete trouvé')
+
+}
+

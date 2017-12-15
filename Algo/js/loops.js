@@ -127,7 +127,6 @@ function cinquNumberInvers(para) {
 }
 
 
-
 function AyoubToBinary(n) {
     var divmod = n % 2, divres = parseInt(n / 2), res = divmod + "";
     while (divres != 0) {
@@ -266,12 +265,12 @@ function trieABull(t) {
 
 
 function trieInsert(t) {
-    for (i = 1; i < t.length ; i++) {
+    for (i = 1; i < t.length; i++) {
         var x = t[i];
         var j = i;
-        while(j>0&&t[j-1]>x){
+        while (j > 0 && t[j - 1] > x) {
             t[j] = t[j - 1];
-            j = j - 1 ;
+            j = j - 1;
         }
         t[j] = x
     }
@@ -282,26 +281,86 @@ var t = [8, 1, 2, 5, 7, 3, 9, 70, 10, 50, 99, 750, 320, 1]
 console.log(trieABull(t))
 
 var user = {
-    userName:"ayoub",
-    password:"",
-    age : 10,
-    tel:[
-        {designation:'fix', num:"0101010101"},
-        {designation:'pro', num:"0101010101"}
+    userName: "ayoub",
+    password: "",
+    age: 10,
+    tel: [
+        {designation: 'fix', num: "0101010101"},
+        {designation: 'pro', num: "0101010101"}
     ],
-    adress:[{
-        l1:"",
-        l2:"",
-        cp:75000,
-        ville:""
-    },{
-        l1:"",
-        l2:"",
-        cp:75000,
-        ville:""
+    adress: [{
+        l1: "",
+        l2: "",
+        cp: 75000,
+        ville: ""
+    }, {
+        l1: "",
+        l2: "",
+        cp: 75000,
+        ville: ""
     }],
 }
 console.log(user.adress.ville)
 user.userName = prompt("Entre le nom")
 user.adress.ville = prompt("Entre la ville")
 console.log(user)
+
+
+if (condition) {
+    //Instructions a executer si la condition
+} else {
+    //Instructions a executer si la condition
+}
+
+
+if (condition) {
+    //Instructions a executer si la condition
+} else if (condition) {
+    //Instructions a executer si la condition
+} else if (condition) {
+    //Instructions a executer si la condition
+} else if (condition) {
+    //Instructions a executer si la condition
+} else if (condition) {
+    //Instructions a executer si la condition
+} else {
+
+}
+
+
+if (condition) {
+    //Instructions a executer si la condition
+}
+
+
+do {
+    instructions
+} while (condition)
+
+
+while (c) {
+    instructions
+}
+
+for( initialisation ; condition entrer ; increment){
+    instructions
+}
+
+
+switch(variable){
+    case "val1":
+        instructions
+        break;
+    case "val2":
+        instructions
+        break;
+
+    case "val3":
+        instructions
+        break;
+
+    default:
+        instructions
+        break;
+}
+
